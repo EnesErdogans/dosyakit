@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="dk-token" content="{{TOKEN}}">
+<title>DosyaKit</title>
+<link rel="icon" href="/static/icon.png">
+<link rel="stylesheet" href="/static/app.css?v={{VERSION}}">
+</head>
+<body>
+<header class="top">
+  <a class="logo" href="#" data-nav="home">
+    <span class="logo-mark" aria-hidden="true">
+      <svg viewBox="0 0 32 32"><path d="M8 3h11l7 7v16a3 3 0 0 1-3 3H8a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3z" fill="currentColor"/><path d="M19 3v5a2 2 0 0 0 2 2h5" fill="none" stroke="#fff" stroke-opacity=".55" stroke-width="2"/><path d="M10 18h8m0 0-3-3m3 3-3 3M22 23h-8m0 0 3-3m-3 3 3 3" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </span>
+    Dosya<b>Kit</b>
+  </a>
+  <div class="search">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
+    <input id="search" type="search" placeholder="Araç ara… (örn. word, birleştir)" autocomplete="off">
+  </div>
+  <nav class="top-actions">
+    <button class="icon-btn" id="btn-output" title="Çıktı klasörünü aç">
+      <svg viewBox="0 0 24 24"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+      <span>Çıktılar</span>
+    </button>
+    <button class="icon-btn" id="btn-settings" title="Ayarlar">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>
+      <span>Ayarlar</span>
+    </button>
+    <button class="icon-btn danger" id="btn-quit" title="DosyaKit'i kapat">
+      <svg viewBox="0 0 24 24"><path d="M12 3v9M6.3 6.3a8 8 0 1 0 11.4 0"/></svg>
+    </button>
+  </nav>
+</header>
+
+<main id="view"></main>
+
+<footer class="foot">
+  Tüm işlemler bu bilgisayarda yapılır; dosyalarınız internete gönderilmez. · DosyaKit v{{VERSION}}
+</footer>
+
+<!-- Ayarlar -->
+<dialog id="settings">
+  <form method="dialog" class="dlg">
+    <h2>Ayarlar</h2>
+    <label class="field">
+      <span>Çıktı klasörü</span>
+      <input name="output_dir" type="text">
+      <small>Sonuçların bir kopyası buraya kaydedilir.</small>
+    </label>
+    <label class="check"><input name="save_copy" type="checkbox"> Sonuçları çıktı klasörüne de kaydet</label>
+    <label class="field">
+      <span>Ofis dönüştürme motoru</span>
+      <select name="office_engine">
+        <option value="auto">Otomatik (önce Microsoft Office)</option>
+        <option value="msoffice">Sadece Microsoft Office</option>
+        <option value="libreoffice">Sadece LibreOffice</option>
+      </select>
+    </label>
+    <label class="field">
+      <span>LibreOffice yolu (isteğe bağlı)</span>
+      <input name="libreoffice_path" type="text" placeholder="Otomatik bulunur">
+    </label>
+    <div class="engines" id="engines"></div>
+    <div class="dlg-links">
+      <button type="button" class="link" data-open="tools">Araçlar klasörünü aç (geliştirici)</button>
+      <button type="button" class="link" data-open="log">Kayıt dosyası klasörü</button>
+    </div>
+    <div class="dlg-actions">
+      <button value="cancel" class="btn ghost">Vazgeç</button>
+      <button value="save" class="btn primary" id="save-settings">Kaydet</button>
+    </div>
+  </form>
+</dialog>
+
+<div id="toast" role="status" aria-live="polite"></div>
+<script src="/static/app.js?v={{VERSION}}"></script>
+</body>
+</html>
